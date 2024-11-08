@@ -25,9 +25,9 @@ resource "oci_containerengine_node_pool" "oke_node_pool" {
     }
     node_pool_pod_network_option_details {
       cni_type          = var.cni_type
-      max_pods_per_node = 31
+      max_pods_per_node = 0
       pod_nsg_ids       = []
-      pod_subnet_ids    = [var.vcn_native_pod_networking_subnet_ocid]
+      pod_subnet_ids    = var.vcn_native_pod_networking_subnet_ocid != "" ? [var.vcn_native_pod_networking_subnet_ocid] : []
     }
     # nsg_ids       = []
     size = var.node_pool_min_nodes
